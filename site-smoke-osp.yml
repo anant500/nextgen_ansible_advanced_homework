@@ -7,7 +7,8 @@
       cloud: openstack
       server: frontend
     register: osp_servers
-
+  - debug:
+      msg: "{{ osp_servers }}"
 
   - name: Curl website
     uri:

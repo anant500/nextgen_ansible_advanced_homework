@@ -1,4 +1,3 @@
-
 - hosts: workstation
   gather_facts: false
   tasks:
@@ -6,16 +5,14 @@
     os_server_info:
       cloud: openstack
       server: frontend
-    register: osp_servers
-  - debug:
-      msg: "{{ osp_servers }}"
+    register: openstack_servers
 
   - name: Curl website
     uri:
       url: "http://{{item.public_v4}}"
       return_content: yes
     with_items:
-      - "{{ osp_servers.openstack_servers }}"
+      - "{{ openstack_servers.openstack_servers }}"
     register: webpage
 
   - name: Fail if 'Ansible has done its job' is not in the page content

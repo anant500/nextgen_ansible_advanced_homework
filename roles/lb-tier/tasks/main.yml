@@ -1,12 +1,12 @@
 ---
 - name: install haproxy loadbalncer
   yum:
-    name: "{{ payload }}"
+    name: haproxy
     state: latest
 
 - name: start and enable haproxy at reboot 
   service:
-    name: "{{ payload }}"
+    name: haproxy 
     state: started
     enabled: yes
 
@@ -15,7 +15,7 @@
     src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     mode: 0644
-  notify: restart "{{ payload }}"
+  notify: restart haproxy
 
 
 
